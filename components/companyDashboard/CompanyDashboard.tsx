@@ -7,17 +7,34 @@ import {
   Header,
   Icon,
 } from "semantic-ui-react";
+import getCredentailFromPod from "./getCredentialFromPod";
+import verifyCredential from "./verifyCredential";
 
 const CompanyDashboard: FunctionComponent = () => {
   const [credentialUri, setCredentialUri] = useState(
-    "https://jackson.solidcommunity.net/credentials/"
+    "https://jackson.solidcommunity.net/credentials/grade_credential3"
   );
   const [credentialStatus, setCredentialStatus] = useState<
-    "none" | "confirmed" | "notFound" | "invalid" | "loading"
-  >("none");
-  const onSubmit = useCallback(() => {
-    console.log("Callback");
-  }, []);
+    "none" | "confirmed" | "notFound" | "invalid" | "loading" | "unknownError"
+  >("confirmed");
+  const onSubmit = useCallback(async () => {
+    setCredentialStatus("loading");
+    try {
+      const credential = await getCredentailFromPod(credentialUri);
+      if (credential == null) {
+        setCredentialStatus("notFound");
+        return;
+      }
+      const isValidCredential = await verifyCredential(credential);
+      setCredentialStatus(isValidCredential ? "confirmed" : "invalid");
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
+      // eslint-disable-next-line no-alert
+      alert(e.message);
+      setCredentialStatus("unknownError");
+    }
+  }, [credentialUri]);
 
   return (
     <Container style={{ marginTop: 16 }}>
@@ -65,7 +82,7 @@ const CompanyDashboard: FunctionComponent = () => {
               <Header as="h2" color="blue">
                 <Icon loading name="spinner" />
               </Header>
-            )
+            );
           default:
             return undefined;
         }

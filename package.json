@@ -9,14 +9,23 @@
   },
   "dependencies": {
     "@inrupt/solid-client-authn-browser": "^1.9.0",
+    "@rdfjs/data-model": "^1.2.0",
+    "@rdfjs/fetch": "^2.1.0",
+    "@rdfjs/types": "^1.0.1",
+    "@transmute/vc.js": "^0.2.1-unstable.12",
     "next": "10.2.3",
+    "node-jose": "^2.0.0",
+    "o-dataset-pack": "^0.2.0",
+    "rdfjs": "^0.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.2",
     "@types/node": "^15.12.2",
+    "@types/node-jose": "^1.1.6",
     "@types/react": "^17.0.11",
     "@typescript-eslint/eslint-plugin": "^4.26.1",
     "@typescript-eslint/parser": "^4.26.1",
