@@ -10,7 +10,7 @@ const Home: FunctionComponent = () => {
         <Link href="/teacher">Teacher's Perspective</Link>
       </Header>
       <Header as="h2">
-        <a href="https://podbrowser.inrupt.com/resource/https%3A%2F%2Fjackson.solidcommunity.net%2Fcredentials%2F">
+        <a href="https://penny.vincenttunru.com/explore/?url=https%3A%2F%2Fjackson.solidcommunity.net%2Fcredentials%2F">
           Student's Perspective
         </a>
       </Header>
