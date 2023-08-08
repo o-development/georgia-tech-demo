@@ -29,8 +29,6 @@ export async function getPublicKeysFromPod(issuer: string): Promise<object[]> {
       }
     })
     .filter((val) => val);
-
-  return [{}];
 }
 
 export default async function verifyCredential(
@@ -41,6 +39,8 @@ export default async function verifyCredential(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const issuer = (jose.parse(credential).header as any).kid;
   const publicKeys = await getPublicKeysFromPod(issuer);
+
+  console.log(publicKeys);
 
   // Validate Public Keys
   try {

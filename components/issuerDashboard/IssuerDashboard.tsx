@@ -4,25 +4,25 @@ import getCredential from "./getCredential";
 import saveCredentialToPod from "./saveCredentialToPod";
 
 const TeacherDashboard: FunctionComponent = () => {
-  const [studentPod, setStudentPod] = useState(
-    "https://jackson.solidcommunity.net/credentials/grade_credential"
+  const [holderPod, setHolderPod] = useState(
+    "https://holder.solidweb.org/credentials/grade_credential"
   );
   const [credentialContent, setCredentialContent] = useState(
     `{
   "@context": {
-    "hasGrade": "https://example.com/ontology/hasGrade"
+    "birthday": "http://xmlns.com/foaf/0.1/birthday"
   },
-  "id": "https://jackson.solidcommunity.net/profile/card#me",
-  "hasGrade": "C+"
+  "id": "https://holder.solidweb.org/profile/card#me",
+  "birthday": "1942/11/20"
 }`
   );
   const onSubmit = useCallback(async () => {
     try {
       const credential = await getCredential(
         JSON.parse(credentialContent),
-        studentPod
+        holderPod
       );
-      await saveCredentialToPod(studentPod, credential);
+      await saveCredentialToPod(holderPod, credential);
       // eslint-disable-next-line no-alert
       alert("Successfully Saved");
     } catch (e) {
@@ -31,19 +31,19 @@ const TeacherDashboard: FunctionComponent = () => {
       // eslint-disable-next-line no-alert
       alert(e.message);
     }
-  }, [credentialContent, studentPod]);
+  }, [credentialContent, holderPod]);
 
   return (
     <Container>
-      <Header as="h1">Send a Credential to a Student's Pod</Header>
+      <Header as="h1">Send a Credential to a Holder's Pod</Header>
       <Form onSubmit={onSubmit}>
         <Form.Field>
           <label htmlFor="issuer">
-            Student's Pod
+            Holder's Pod
             <input
-              value={studentPod}
+              value={holderPod}
               onChange={(e) => {
-                setStudentPod(e.target.value);
+                setHolderPod(e.target.value);
               }}
             />
           </label>
@@ -59,7 +59,7 @@ const TeacherDashboard: FunctionComponent = () => {
             />
           </label>
         </Form.Field>
-        <Button type="submit">Sign and Send to Student's Pod</Button>
+        <Button type="submit">Sign and Send to Holder's Pod</Button>
       </Form>
     </Container>
   );

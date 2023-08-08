@@ -6,7 +6,7 @@ import {
   getDefaultSession,
 } from "@inrupt/solid-client-authn-browser";
 import Login from "../../components/Login";
-import TeacherDashboard from "../../components/teacherDashboard/TeacherDashboard";
+import IssuerDashboard from "../../components/issuerDashboard/IssuerDashboard";
 
 const TeacherPerspective: FunctionComponent = () => {
   const [loadingAuth, setLoadingAuth] = useState(true);
@@ -34,7 +34,7 @@ const TeacherPerspective: FunctionComponent = () => {
   if (!loggedInWebId) {
     return (
       <Container text>
-        <Header as="h1">Professor Login</Header>
+        <Header as="h1">Issuer Login</Header>
         <Login />
       </Container>
     );
@@ -48,7 +48,7 @@ const TeacherPerspective: FunctionComponent = () => {
         </Menu.Item>
         <Menu.Item position="right" name="Log Out" onClick={logoutCallback} />
       </Menu>
-      <TeacherDashboard />
+      <IssuerDashboard />
     </Container>
   );
 };

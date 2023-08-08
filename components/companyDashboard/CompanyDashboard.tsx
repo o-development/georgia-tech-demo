@@ -12,11 +12,11 @@ import verifyCredential from "./verifyCredential";
 
 const CompanyDashboard: FunctionComponent = () => {
   const [credentialUri, setCredentialUri] = useState(
-    "https://jackson.solidcommunity.net/credentials/grade_credential3"
+    "https://holder.solidweb.org/credentials/grade_credential"
   );
   const [credentialStatus, setCredentialStatus] = useState<
     "none" | "confirmed" | "notFound" | "invalid" | "loading" | "unknownError"
-  >("confirmed");
+  >("none");
   const onSubmit = useCallback(async () => {
     setCredentialStatus("loading");
     try {
